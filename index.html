@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Arrays Assignment</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(to right, #e66465, #9198e5);
+            color: #fff;
+            padding: 20px;
+        }
+        h1, h2 {
+            margin-top: 20px;
+        }
+        p {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 10px;
+            border-radius: 5px;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            padding: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>JavaScript Arrays Assignment</h1>
+
+        <h2>1. Declare an empty array using JS literal notation.</h2>
+        <p>let studentNames = [];</p>
+
+        <h2>2. Declare an empty array using JS object notation.</h2>
+        <p>let studentNames2 = new Array();</p>
+
+        <h2>3. Declare and initialize a strings array.</h2>
+        <p>let stringArray = ["apple", "banana", "cherry"];</p>
+
+        <h2>4. Declare and initialize a numbers array.</h2>
+        <p>let numbersArray = [1, 2, 3, 4, 5];</p>
+
+        <h2>5. Declare and initialize a boolean array.</h2>
+        <p>let booleanArray = [true, false, true];</p>
+
+        <h2>6. Declare and initialize a mixed array.</h2>
+        <p>let mixedArray = ["apple", 1, true, "banana", 2, false];</p>
+
+        <h2>7. Declare and Initialize an array of education qualifications.</h2>
+        <ul id="qualifications-list"></ul>
+
+        <h2>8. Store student names and scores, then display scores and percentages.</h2>
+        <div id="student-scores"></div>
+
+        <h2>9. Color Array Manipulation:</h2>
+        <div id="colors-output"></div>
+
+        <h2>10. Sorted Student Scores:</h2>
+        <p id="sorted-scores"></p>
+
+        <h2>11. Selected Cities:</h2>
+        <p id="selected-cities"></p>
+
+        <h2>12. Single String from Array:</h2>
+        <p id="single-string"></p>
+
+        <h2>13. FIFO Array:</h2>
+        <p id="fifo-array"></p>
+
+        <h2>14. LIFO Array:</h2>
+        <p id="lifo-array"></p>
+
+        <h2>15. Phone Manufacturers Dropdown:</h2>
+        <div id="manufacturers-dropdown"></div>
+    </div>
+
+    <script>
+        // 7. Displaying qualifications
+        let qualifications = ["SSC", "HSC", "BCS", "BS", "BCOM", "MS", "M. Phil.", "PhD"];
+        qualifications.forEach(qualification => {
+            document.getElementById("qualifications-list").innerHTML += `<li>${qualification}</li>`;
+        });
+
+        // 8. Displaying student names and scores
+        let studentNames3 = ["Michael", "John", "Tony"];
+        let studentScores = [420, 380, 480];
+        let totalMarks = 500;
+        let scoresHTML = "";
+        for (let i = 0; i < studentNames3.length; i++) {
+            let percentage = (studentScores[i] / totalMarks) * 100;
+            scoresHTML += `<p>${studentNames3[i]} scored ${studentScores[i]} out of ${totalMarks} (${percentage.toFixed(2)}%)</p>`;
+        }
+        document.getElementById("student-scores").innerHTML = scoresHTML;
+
+        // 9. Color Array Manipulation
+        let colors = ["Red", "Green", "Blue"];
+        let colorsHTML = `<p>Colors Array: ${colors.join(", ")}</p>`;
+        
+        let newColorBeginning = prompt("Enter a color to add to the beginning:");
+        colors.unshift(newColorBeginning);
+        colorsHTML += `<p>After adding at the beginning: ${colors.join(", ")}</p>`;
+
+        let newColorEnd = prompt("Enter a color to add to the end:");
+        colors.push(newColorEnd);
+        colorsHTML += `<p>After adding at the end: ${colors.join(", ")}</p>`;
+
+        colors.unshift("Purple", "Yellow");
+        colorsHTML += `<p>After adding two colors at the beginning: ${colors.join(", ")}</p>`;
+
+        colors.shift();
+        colorsHTML += `<p>After deleting the first color: ${colors.join(", ")}</p>`;
+
+        colors.pop();
+        colorsHTML += `<p>After deleting the last color: ${colors.join(", ")}</p>`;
+
+        let indexToAdd = parseInt(prompt("Enter the index to add a color:"));
+        let colorToAdd = prompt("Enter the color to add:");
+        colors.splice(indexToAdd, 0, colorToAdd);
+        colorsHTML += `<p>After adding color at index ${indexToAdd}: ${colors.join(", ")}</p>`;
+
+        let indexToDelete = parseInt(prompt("Enter the index to delete color(s) from:"));
+        let numColorsToDelete = parseInt(prompt("How many colors do you want to delete?"));
+        colors.splice(indexToDelete, numColorsToDelete);
+        colorsHTML += `<p>After deleting ${numColorsToDelete} color(s) from index ${indexToDelete}: ${colors.join(", ")}</p>`;
+
+        document.getElementById("colors-output").innerHTML = colorsHTML;
+
+        // 10. Sorted Scores
+        let scores = [85, 67, 92, 71, 58];
+        scores.sort((a, b) => a - b);
+        document.getElementById("sorted-scores").innerHTML = `Sorted Scores (Ascending): ${scores.join(", ")}`;
+
+        // 11. Copy array elements from one array to another.
+        let cities = ["Karachi", "Lahore", "Islamabad", "Peshawar", "Quetta"];
+        let selectedCities = cities.slice(1, 4);
+        document.getElementById("selected-cities").innerHTML = `Selected Cities: ${selectedCities.join(", ")}`;
+
+        // 12. Create a single string from an array
+        let arr = ["This ", "is ", "my ", "cat"];
+        let singleString = arr.join("");
+        document.getElementById("single-string").innerHTML = `Single String: ${singleString}`;
+
+        // 13. FIFO Array
+        let fifoArray = [];
+        fifoArray.push("Apple", "Banana", "Cherry");
+        document.getElementById("fifo-array").innerHTML = `FIFO Array: ${fifoArray.join(", ")}`;
+
+        // 14. LIFO Array
+        let lifoArray = ["Apple", "Banana", "Cherry"];
+        document.getElementById("lifo-array").innerHTML = `LIFO Array: ${lifoArray.reverse().join(", ")}`;
+
+        // 15. Dropdown menu of phone manufacturers
+        let phoneManufacturers = ["Apple", "Samsung", "Motorola", "Nokia", "Sony", "Haier"];
+        let dropdownHTML = '<select class="form-control">';
+        phoneManufacturers.forEach(manufacturer => {
+            dropdownHTML += `<option value="${manufacturer}">${manufacturer}</option>`;
+        });
+        dropdownHTML += '</select>';
+        document.getElementById("manufacturers-dropdown").innerHTML = dropdownHTML;
+    </script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
